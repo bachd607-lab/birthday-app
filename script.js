@@ -1,7 +1,10 @@
 let isLoginMode = true;
 
-// 1. Chuyển đổi Đăng nhập / Đăng ký
 function toggleAuth() {
+    const card = document.getElementById('auth-card');
+    card.style.animation = 'none';
+    setTimeout(() => card.style.animation = 'zoomIn 0.5s ease', 10);
+
     isLoginMode = !isLoginMode;
     document.getElementById('auth-title').innerText = isLoginMode ? "Welcome Back" : "Join The Squad";
     document.getElementById('auth-subtitle').innerText = isLoginMode ? "Đăng nhập để xem kèo sinh nhật." : "Tạo tài khoản để lưu trữ vĩnh viễn.";
@@ -9,7 +12,6 @@ function toggleAuth() {
     document.getElementById('toggle-text').innerHTML = isLoginMode ? 'Chưa có acc? <span onclick="toggleAuth()">Đăng ký ngay</span>' : 'Đã có acc? <span onclick="toggleAuth()">Đăng nhập</span>';
 }
 
-// 2. Xử lý Đăng nhập / Đăng ký
 function handleAuth() {
     const user = document.getElementById('username').value;
     const pass = document.getElementById('password').value;
@@ -31,18 +33,31 @@ function handleAuth() {
 }
 
 function enterDashboard(user) {
-    document.getElementById('auth-card').classList.add('hidden');
-    document.getElementById('dashboard-card').classList.remove('hidden');
-    document.getElementById('user-display').innerText = user;
-    renderList();
+    const authCard = document.getElementById('auth-card');
+    const dashCard = document.getElementById('dashboard-card');
+
+    authCard.classList.add('animate-out');
+    setTimeout(() => {
+        authCard.classList.add('hidden');
+        authCard.classList.remove('animate-out');
+        dashCard.classList.remove('hidden');
+        document.getElementById('user-display').innerText = user;
+        renderList();
+    }, 400);
 }
 
 function logout() {
-    document.getElementById('dashboard-card').classList.add('hidden');
-    document.getElementById('auth-card').classList.remove('hidden');
+    const authCard = document.getElementById('auth-card');
+    const dashCard = document.getElementById('dashboard-card');
+
+    dashCard.classList.add('animate-out');
+    setTimeout(() => {
+        dashCard.classList.add('hidden');
+        dashCard.classList.remove('animate-out');
+        authCard.classList.remove('hidden');
+    }, 400);
 }
 
-// 3. Quản lý sinh nhật
 function addBirthday() {
     const name = document.getElementById('friendName').value;
     const date = document.getElementById('birthDate').value;
@@ -64,10 +79,12 @@ function renderList() {
 
     const today = new Date().toISOString().slice(5, 10);
 
-    list.forEach(item => {
+    list.forEach((item, index) => {
         const isToday = item.date.slice(5, 10) === today;
         const div = document.createElement('div');
         div.className = 'birthday-item';
+        // Delay hiệu ứng xuất hiện cho từng item
+        div.style.animationDelay = `${index * 0.1}s`;
         div.innerHTML = `
             <div>
                 <b style="color: ${isToday ? '#FF00CC' : '#00D2FF'}">${item.name}</b>
