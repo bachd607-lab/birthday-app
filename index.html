@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BFF Birthday | GenZ Edition</title>
+    <title>Squad Birthday | Hot Trend</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,52 +14,45 @@
         <i class="fa-solid fa-music"></i>
     </button>
 
-    <div style="display:none;">
-        <iframe id="youtube-audio" src="https://www.youtube.com/embed/gJhcsEQhjbM?enablejsapi=1&autoplay=0&loop=1&playlist=gJhcsEQhjbM" allow="autoplay" frameborder="0"></iframe>
+    <div style="position: absolute; left: -9999px;">
+        <div id="player"></div>
     </div>
 
     <div id="auth-card" class="card">
-        <h1 id="auth-title">Welcome Back</h1>
-        <p class="subtitle" id="auth-subtitle">Đăng nhập để xem "kèo" sinh nhật.</p>
-        
+        <h1 id="auth-title">Hey Bestie!</h1>
+        <p class="subtitle" id="auth-subtitle">Đăng nhập để xem lịch "quẩy".</p>
         <div class="input-group">
             <i class="fa-solid fa-user"></i>
-            <input type="text" id="username" placeholder="Username">
+            <input type="text" id="username" placeholder="Tên người dùng">
         </div>
         <div class="input-group">
             <i class="fa-solid fa-lock"></i>
             <input type="password" id="password" placeholder="Mật khẩu">
         </div>
-
-        <button onclick="handleAuth()" id="auth-btn">Bắt đầu ngay <i class="fa-solid fa-arrow-right"></i></button>
-        
+        <button onclick="handleAuth()" id="auth-btn">Vào Team <i class="fa-solid fa-fire"></i></button>
         <p class="link-text" id="toggle-text">Chưa có acc? <span onclick="toggleAuth()">Đăng ký ngay</span></p>
     </div>
 
     <div id="dashboard-card" class="card hidden">
-        <div class="dashboard-header">
-            <h1>My Squad 🎂</h1>
-            <p class="subtitle">Đang đăng nhập: <b id="user-display" style="color: #00D2FF;"></b></p>
+        <div id="next-birthday-box" class="countdown-box">
+            <span>Sắp tới:</span>
+            <div id="countdown-timer">Đang tính toán...</div>
         </div>
+
+        <h1>My Squad 🎂</h1>
+        <p class="subtitle">Chào bạn, <b id="user-display" style="color: #00D2FF;"></b></p>
 
         <div class="add-box">
-            <div class="input-group">
-                <i class="fa-solid fa-signature"></i>
-                <input type="text" id="friendName" placeholder="Tên bạn thân...">
-            </div>
-            <div class="input-group">
-                <i class="fa-solid fa-calendar-days"></i>
-                <input type="date" id="birthDate">
-            </div>
-            <button onclick="addBirthday()" style="background: #00D2FF;">Thêm Nhắc Nhở</button>
+            <input type="text" id="friendName" placeholder="Tên bạn ấy...">
+            <input type="date" id="birthDate">
+            <button onclick="addBirthday()" style="background: #00D2FF;">Lưu Lại</button>
         </div>
 
-        <div class="list-container" id="birthdayList">
-            </div>
-
+        <div class="list-container" id="birthdayList"></div>
         <button onclick="logout()" class="btn-logout">Đăng Xuất</button>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="script.js"></script>
 </body>
 </html>
