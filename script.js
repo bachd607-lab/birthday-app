@@ -1,3 +1,20 @@
+// Tính năng bật/tắt nhạc
+let isMusicPlaying = false;
+function toggleMusic() {
+    const iframe = document.getElementById('youtube-audio');
+    const btn = document.getElementById('music-btn');
+    if (!isMusicPlaying) {
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        btn.classList.add('playing-music');
+        isMusicPlaying = true;
+    } else {
+        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        btn.classList.remove('playing-music');
+        isMusicPlaying = false;
+    }
+}
+
+// Logic Auth và Giao diện
 let isLoginMode = true;
 
 function toggleAuth() {
@@ -83,7 +100,6 @@ function renderList() {
         const isToday = item.date.slice(5, 10) === today;
         const div = document.createElement('div');
         div.className = 'birthday-item';
-        // Delay hiệu ứng xuất hiện cho từng item
         div.style.animationDelay = `${index * 0.1}s`;
         div.innerHTML = `
             <div>
