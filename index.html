@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFF Birthday | GenZ Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MÀN HÌNH 1: AUTH (LOGIN/SIGNUP) -->
+    <div id="auth-card" class="card">
+        <h1 id="auth-title">Birthday</h1>
+        <p class="subtitle" id="auth-subtitle">Đăng nhập để xem "kèo" sinh nhật.</p>
+        
+        <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="username" placeholder="Username">
+        </div>
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" placeholder="Mật khẩu">
+        </div>
+
+        <button onclick="handleAuth()" id="auth-btn">Bắt đầu ngay <i class="fa-solid fa-arrow-right"></i></button>
+        
+        <p class="link-text" id="toggle-text">Chưa có acc? <span onclick="toggleAuth()">Đăng ký ngay</span></p>
+    </div>
+
+    <!-- MÀN HÌNH 2: DASHBOARD -->
+    <div id="dashboard-card" class="card hidden">
+        <div class="dashboard-header">
+            <h1>My Squad 🎂</h1>
+            <p class="subtitle">Đang đăng nhập: <b id="user-display" style="color: #00D2FF;"></b></p>
+        </div>
+
+        <div class="add-box">
+            <div class="input-group">
+                <i class="fa-solid fa-signature"></i>
+                <input type="text" id="friendName" placeholder="Tên bạn thân...">
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-calendar-days"></i>
+                <input type="date" id="birthDate">
+            </div>
+            <button onclick="addBirthday()" style="background: #00D2FF;">Thêm Nhắc Nhở</button>
+        </div>
+
+        <div class="list-container" id="birthdayList">
+            <!-- Danh sách render ở đây -->
+        </div>
+
+        <button onclick="logout()" class="btn-logout">Đăng Xuất</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
