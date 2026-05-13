@@ -1,154 +1,73 @@
 :root {
-    --bg: #0F0C29;
-    --glass: rgba(255, 255, 255, 0.1);
     --primary: #FF00CC;
     --secondary: #3333FF;
     --accent: #00D2FF;
-    --text: #ffffff;
+    --glass: rgba(255, 255, 255, 0.08);
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #0F0C29, #302B63, #24243E);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text);
-    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top right, #24243E, #0F0C29);
+    height: 100vh; margin: 0; overflow: hidden;
+    display: flex; justify-content: center; align-items: center;
 }
 
-/* NÚT PHÁT NHẠC */
-#music-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 1000;
-    transition: 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#music-btn:active { transform: scale(0.9); }
-
-.playing-music {
-    color: var(--primary) !important;
-    animation: spinMusic 3s linear infinite;
-}
-
-@keyframes spinMusic { 100% { transform: rotate(360deg); } }
-
-/* KHUNG GIAO DIỆN */
 .card {
     background: var(--glass);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2.5rem;
-    border-radius: 35px;
-    width: 90%;
-    max-width: 420px;
-    text-align: center;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-    transition: all 0.5s ease;
+    padding: 2rem; border-radius: 30px;
+    width: 90%; max-width: 400px; text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 15px rgba(255, 0, 204, 0.1);
+    animation: zoomIn 0.5s ease;
 }
 
-.hidden { display: none !important; }
-
-/* ANIMATIONS MÀN HÌNH */
-@keyframes zoomIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+.countdown-box {
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px dashed var(--accent);
+    border-radius: 15px; padding: 10px; margin-bottom: 20px;
+    font-size: 0.9rem; color: var(--accent);
 }
 
-@keyframes fadeOut {
-    from { opacity: 1; transform: scale(1); }
-    to { opacity: 0; transform: scale(1.1); }
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.card:not(.hidden) { animation: zoomIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-out { animation: fadeOut 0.4s ease forwards !important; }
+#countdown-timer { font-weight: bold; font-size: 1.1rem; text-shadow: 0 0 5px var(--accent); }
 
 h1 {
-    font-size: 2.2rem;
-    background: linear-gradient(to right, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
-    margin-bottom: 10px;
+    font-size: 2rem; margin-bottom: 5px;
+    background: linear-gradient(to right, #FF00CC, #3333FF);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-
-.subtitle { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 2rem; }
-.input-group { position: relative; margin-bottom: 1.2rem; }
 
 input {
-    width: 100%;
-    padding: 14px 14px 14px 45px;
-    border-radius: 15px;
-    border: none;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    outline: none;
-    transition: 0.3s;
+    width: 100%; padding: 12px 15px; margin-bottom: 10px;
+    border-radius: 12px; border: none; background: rgba(255,255,255,0.05);
+    color: white; outline: none; transition: 0.3s;
 }
 
-input:focus { background: rgba(255, 255, 255, 0.15); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
-.input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--accent); }
+input:focus { background: rgba(255,255,255,0.1); border: 1px solid var(--accent); }
 
 button {
-    width: 100%;
-    padding: 15px;
-    border-radius: 15px;
-    border: none;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    margin-top: 10px;
+    color: white; border: none; padding: 12px; border-radius: 12px;
+    font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%;
 }
 
-button:active { transform: scale(0.95); }
-.link-text span { color: var(--accent); cursor: pointer; font-weight: bold; }
+button:hover { transform: scale(1.02); filter: brightness(1.2); }
 
 .birthday-item {
-    background: rgba(255, 255, 255, 0.05);
-    margin-bottom: 10px;
-    padding: 12px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-    animation: slideUp 0.4s ease forwards;
+    background: rgba(255,255,255,0.03); padding: 15px;
+    border-radius: 15px; display: flex; justify-content: space-between;
+    margin-top: 10px; border-left: 4px solid var(--secondary);
 }
 
-.delete-btn { width: auto; background: none; color: #ff4d4d; padding: 5px; margin: 0; }
+.today-item { border-left: 4px solid var(--primary); background: rgba(255, 0, 204, 0.05); }
 
-.today-tag {
-    background: var(--primary);
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 10px;
-    animation: pulse 1s infinite alternate;
+#music-btn {
+    position: fixed; top: 20px; right: 20px; width: 50px; height: 50px;
+    border-radius: 50%; z-index: 99; background: var(--glass); color: white;
 }
 
-@keyframes pulse { from { opacity: 1; } to { opacity: 0.5; } }
-.btn-logout { background: none; border: 1px solid rgba(255,255,255,0.2); font-size: 0.8rem; margin-top: 20px; }
+.playing { animation: rotate 3s linear infinite; color: var(--primary); }
+
+@keyframes rotate { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+.hidden { display: none; }
