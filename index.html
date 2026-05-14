@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Squad Social</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="auth-screen" class="app-container">
+        <div class="auth-box">
+            <h1 class="logo-text">birthday</h1>
+            <p id="auth-subtitle" style="color: #888; margin-bottom: 20px;">Đăng nhập để kết nối với Bestie</p>
+            
+            <input type="text" id="username" placeholder="Tên đăng nhập">
+            <input type="email" id="email" placeholder="Email của bạn" class="hidden">
+            <input type="password" id="password" placeholder="Mật khẩu">
+            
+            <button class="primary-btn" onclick="handleAuth()" id="auth-btn">Đăng Nhập</button>
+            
+            <div class="auth-links">
+                <span onclick="forgotPassword()" id="forgot-btn">Quên mật khẩu?</span>
+                <p id="toggle-text">Chưa có tài khoản? <b onclick="toggleAuth()">Đăng ký</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-app" class="app-container hidden">
+        
+        <header class="app-header">
+            <h2 class="logo-text-small">Squad</h2>
+            <i class="fa-brands fa-facebook-messenger"></i>
+        </header>
+
+        <main class="app-content">
+            <div id="tab-feed" class="tab-pane">
+                <div id="feed-container"></div>
+            </div>
+
+            <div id="tab-search" class="tab-pane hidden">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm bạn bè...">
+                    <button onclick="findUser()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div id="searchResult"></div>
+            </div>
+
+            <div id="tab-add" class="tab-pane hidden">
+                <h3>Tạo bài đăng mới</h3>
+                <textarea id="postText" placeholder="Bạn đang nghĩ gì?"></textarea>
+                <div class="file-upload">
+                    <label for="postMedia"><i class="fa-solid fa-image"></i> Chọn Ảnh / Video (Chỉ xem tạm)</label>
+                    <input type="file" id="postMedia" accept="image/*,video/*">
+                </div>
+                <button class="primary-btn" onclick="createPost()">Chia sẻ</button>
+            </div>
+
+            <div id="tab-profile" class="tab-pane hidden">
+                <div class="profile-header">
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="stats">
+                        <div><b id="stat-posts">0</b><br>Bài viết</div>
+                        <div><b id="stat-friends">0</b><br>Bạn bè</div>
+                    </div>
+                </div>
+                <h3 id="profile-name">Username</h3>
+                <p style="color: #aaa; font-size: 0.9rem;">Thành viên của Squad</p>
+                <button class="secondary-btn" onclick="logout()" style="margin-top: 15px;">Đăng xuất</button>
+                
+                <div class="profile-grid" id="profile-grid">
+                    </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <i class="fa-solid fa-house active" onclick="switchTab('feed', this)"></i>
+            <i class="fa-solid fa-magnifying-glass" onclick="switchTab('search', this)"></i>
+            <i class="fa-regular fa-square-plus" onclick="switchTab('add', this)"></i>
+            <i class="fa-regular fa-user" onclick="switchTab('profile', this)"></i>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

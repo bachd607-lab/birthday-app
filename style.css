@@ -1,0 +1,80 @@
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #0095f6;
+    --border-color: #262626;
+    --nav-bg: #000000;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+body { background-color: #121212; display: flex; justify-content: center; color: var(--text-color); }
+
+/* KHUNG ỨNG DỤNG (MOBILE VIEW DÙNG TRÊN ĐA NỀN TẢNG) */
+.app-container {
+    width: 100%; max-width: 450px; /* Giới hạn độ rộng trên máy tính */
+    height: 100dvh; /* Vừa đúng màn hình điện thoại (iOS/Android) */
+    background-color: var(--bg-color);
+    position: relative; display: flex; flex-direction: column;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.hidden { display: none !important; }
+
+/* --- GIAO DIỆN AUTH --- */
+.auth-box { padding: 40px; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+.logo-text { font-family: 'Brush Script MT', cursive, sans-serif; font-size: 3rem; margin-bottom: 20px; text-align: center; }
+.logo-text-small { font-family: 'Brush Script MT', cursive, sans-serif; font-size: 1.8rem; }
+
+input { width: 100%; padding: 14px; margin-bottom: 15px; background: #121212; border: 1px solid var(--border-color); color: white; border-radius: 8px; outline: none; }
+input:focus { border-color: #555; }
+
+.primary-btn { width: 100%; padding: 14px; background: var(--accent-color); color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+.primary-btn:active { opacity: 0.7; }
+.secondary-btn { width: 100%; padding: 8px; background: transparent; border: 1px solid var(--border-color); color: white; border-radius: 8px; cursor: pointer; }
+
+.auth-links { text-align: center; margin-top: 20px; font-size: 0.9rem; }
+.auth-links span { color: var(--accent-color); cursor: pointer; display: block; margin-bottom: 20px; }
+.auth-links b { color: var(--accent-color); cursor: pointer; }
+
+/* --- GIAO DIỆN APP --- */
+.app-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--border-color); height: 60px; }
+.app-header i { font-size: 1.5rem; }
+
+.app-content { flex: 1; overflow-y: auto; padding-bottom: 60px; /* Nhường chỗ cho Bottom Nav */ }
+.tab-pane { padding: 10px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* POST (BÀI ĐĂNG) */
+.post { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+.post-header { display: flex; align-items: center; padding: 10px; font-weight: bold; }
+.post-header i { font-size: 1.5rem; margin-right: 10px; }
+.post-media { width: 100%; max-height: 500px; object-fit: contain; background: #111; }
+.post-actions { padding: 10px; font-size: 1.5rem; display: flex; gap: 15px; }
+.post-actions i { cursor: pointer; transition: 0.2s; }
+.post-actions .liked { color: #ff3040; animation: pop 0.3s; }
+@keyframes pop { 50% { transform: scale(1.2); } }
+.post-caption { padding: 0 10px; font-size: 0.95rem; line-height: 1.4; margin-bottom: 10px; }
+.post-comments { padding: 0 10px; }
+.comment-box { display: flex; margin-top: 10px; }
+.comment-box input { margin-bottom: 0; border-radius: 20px; padding: 8px 15px; flex: 1; }
+.comment-box button { background: none; border: none; color: var(--accent-color); font-weight: bold; padding: 0 10px; }
+
+/* TẠO BÀI ĐĂNG */
+textarea { width: 100%; height: 100px; background: #111; color: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 10px; resize: none; outline: none; margin-bottom: 15px; }
+.file-upload { margin-bottom: 15px; text-align: center; }
+.file-upload input { display: none; }
+.file-upload label { display: block; padding: 15px; border: 1px dashed var(--accent-color); color: var(--accent-color); border-radius: 10px; cursor: pointer; }
+
+/* PROFILE */
+.profile-header { display: flex; align-items: center; margin-bottom: 20px; }
+.avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #333; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; margin-right: 30px; }
+.stats { display: flex; gap: 20px; text-align: center; }
+.profile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 2px; }
+.grid-item { width: 100%; aspect-ratio: 1; background: #222; object-fit: cover; }
+
+/* BOTTOM NAV */
+.bottom-nav { position: absolute; bottom: 0; width: 100%; height: 60px; background: var(--nav-bg); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; font-size: 1.5rem; }
+.bottom-nav i { color: #888; cursor: pointer; transition: 0.2s; }
+.bottom-nav i.active { color: white; }
